@@ -1,0 +1,74 @@
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(40) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE
+);
+
+CREATE TABLE actors (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE genres (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    genre VARCHAR(60) NOT NULL UNIQUE
+);
+
+CREATE TABLE movies (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    director VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE movies_genres (
+    movie_id INT NOT NULL,
+    genre_id INT NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE movie_actors (
+    movie_id INT NOT NULL,
+    actor_id INT NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (actor_id) REFERENCES actors(id)
+);
+
+CREATE TABLE tv_shows (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    director VARCHAR(255) NOT NULL,
+    rating INT NOT NULL
+);
+
+CREATE TABLE tv_show_genres (
+    tv_show_id INT NOT NULL,
+    genre_id INT NOT NULL,
+    FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
+    FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE tv_show_actors (
+    tv_show_id INT NOT NULL,
+    actor_id INT NOT NULL,
+    FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
+    FOREIGN KEY (actor_id) REFERENCES actors(id)
+);
+
+CREATE TABLE seasons (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tv_show_id INT NOT NULL,
+    season_number INT NOT NULL,
+    FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id)
+);
+
+CREATE TABLE episodes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    season_id INT NOT NULL,
+    episode_number INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    FOREIGN KEY (season_id) REFERENCES seasons(id)
+)
