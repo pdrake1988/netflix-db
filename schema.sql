@@ -1,7 +1,6 @@
 CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id VARCHAR(255) PRIMARY KEY NOT NULL,
     username VARCHAR(40) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE
 );
 
@@ -25,6 +24,7 @@ CREATE TABLE movies (
 CREATE TABLE movies_genres (
     movie_id INT NOT NULL,
     genre_id INT NOT NULL,
+    PRIMARY KEY (movie_id, genre_id),
     FOREIGN KEY (movie_id) REFERENCES movies(id),
     FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
@@ -32,6 +32,7 @@ CREATE TABLE movies_genres (
 CREATE TABLE movie_actors (
     movie_id INT NOT NULL,
     actor_id INT NOT NULL,
+    PRIMARY KEY (movie_id, actor_id),
     FOREIGN KEY (movie_id) REFERENCES movies(id),
     FOREIGN KEY (actor_id) REFERENCES actors(id)
 );
@@ -47,6 +48,7 @@ CREATE TABLE tv_shows (
 CREATE TABLE tv_show_genres (
     tv_show_id INT NOT NULL,
     genre_id INT NOT NULL,
+    PRIMARY KEY (tv_show_id, genre_id),
     FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
     FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
@@ -54,6 +56,7 @@ CREATE TABLE tv_show_genres (
 CREATE TABLE tv_show_actors (
     tv_show_id INT NOT NULL,
     actor_id INT NOT NULL,
+    PRIMARY KEY (tv_show_id, actor_id),
     FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
     FOREIGN KEY (actor_id) REFERENCES actors(id)
 );
@@ -71,4 +74,20 @@ CREATE TABLE episodes (
     episode_number INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     FOREIGN KEY (season_id) REFERENCES seasons(id)
-)
+);
+
+CREATE TABLE user_movies (
+    user_id VARCHAR(255) NOT NULL,
+    movie_id INT NOT NULL,
+    PRIMARY KEY (user_id, movie_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
+
+CREATE TABLE user_tv_shows (
+    user_id VARCHAR(255) NOT NULL,
+    tv_show_id INT NOT NULL,
+    PRIMARY KEY (user_id, tv_show_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id)
+);
