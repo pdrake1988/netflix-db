@@ -14,6 +14,11 @@ CREATE TABLE genres (
     genre VARCHAR(60) NOT NULL UNIQUE
 );
 
+CREATE TABLE tags (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tag VARCHAR(80) NOT NULL UNIQUE
+);
+
 CREATE TABLE movies (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
@@ -27,6 +32,14 @@ CREATE TABLE movies_genres (
     PRIMARY KEY (movie_id, genre_id),
     FOREIGN KEY (movie_id) REFERENCES movies(id),
     FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE movies_tags (
+    movie_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    PRIMARY KEY (movie_id, tag_id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id)
 );
 
 CREATE TABLE movie_actors (
@@ -51,6 +64,19 @@ CREATE TABLE tv_show_genres (
     PRIMARY KEY (tv_show_id, genre_id),
     FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
     FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE tv_tags (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tag VARCHAR(80) NOT NULL UNIQUE
+);
+
+CREATE TABLE tv_show_tags (
+    tv_show_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    PRIMARY KEY (tv_show_id, tag_id),
+    FOREIGN KEY (tv_show_id) REFERENCES tv_shows(id),
+    FOREIGN KEY (tag_id) REFERENCES tv_tags(id)
 );
 
 CREATE TABLE tv_show_actors (
