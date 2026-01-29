@@ -29,7 +29,8 @@ CREATE TABLE movies
     title       VARCHAR(255) NOT NULL,
     year        INT          NOT NULL,
     director    VARCHAR(255) NOT NULL,
-    description TEXT         NOT NULL
+    description TEXT         NOT NULL,
+    rating      INT          NOT NULL
 );
 
 CREATE TABLE movies_genres
