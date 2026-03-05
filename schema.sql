@@ -89,6 +89,8 @@ CREATE TABLE episodes
     episode_number INT          NOT NULL,
     title          VARCHAR(255) NOT NULL,
     description    TEXT         NOT NULL,
+    air_date       INT          NOT NULL,
+    still_path     VARCHAR(100) NOT NULL,
     FOREIGN KEY (season_id) REFERENCES seasons (id)
 );
 
