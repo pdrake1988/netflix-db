@@ -48,26 +48,16 @@ CREATE TABLE movie_actors
     FOREIGN KEY (actor_id) REFERENCES actors (id)
 );
 
-CREATE TABLE tv_tags
-(
-    id       INT PRIMARY KEY AUTO_INCREMENT,
-    genre_id INT         NOT NULL,
-    tag      VARCHAR(80) NOT NULL UNIQUE,
-    FOREIGN KEY (genre_id) REFERENCES genres (id)
-);
-
 CREATE TABLE tv_shows
 (
     id             INT PRIMARY KEY AUTO_INCREMENT,
     title          VARCHAR(255) NOT NULL,
     description    TEXT         NOT NULL,
     genre_id       INT          NOT NULL,
-    tag_id         INT          NOT NULL,
     first_air_date INT          NOT NULL,
     poster_path    VARCHAR(100) NOT NULL,
     backdrop_path  VARCHAR(100) NOT NULL,
-    FOREIGN KEY (genre_id) REFERENCES genres (id),
-    FOREIGN KEY (tag_id) REFERENCES tv_tags (id)
+    FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
 
 
