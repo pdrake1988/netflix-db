@@ -73,8 +73,12 @@ CREATE TABLE tv_show_actors
 CREATE TABLE seasons
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
-    tv_show_id    INT NOT NULL,
-    season_number INT NOT NULL,
+    tv_show_id    INT          NOT NULL,
+    season_number INT          NOT NULL,
+    episode_count INT          NOT NULL,
+    name          VARCHAR(100) NOT NULL,
+    description   TEXT         NOT NULL,
+    poster_path   VARCHAR(100) NOT NULL,
     FOREIGN KEY (tv_show_id) REFERENCES tv_shows (id)
 );
 
