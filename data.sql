@@ -8,7 +8,7 @@ VALUES ('Action'),
        ('Romance'),
        ('Documentary'),
        ('Animation'),
-       ('Fantasy');
+       ('Reality');
 
 INSERT INTO movie_tags (genre_id, tag)
 VALUES (1, 'Martial Arts'),
@@ -34,8 +34,19 @@ VALUES (1, 'Martial Arts'),
        (6, 'Space Opera'),
        (6, 'Cyberpunk'),
        (6, 'Time Travel'),
-       (6, 'Dystopian');
-
+       (6, 'Dystopian'),
+       (7, 'Romantic Drama'),
+       (7, 'Coming of Age'),
+       (7, 'Steamy Romance'),
+       (7, 'Dark Romance'),
+       (8, 'Political Documentary'),
+       (8, 'Social Issue'),
+       (8, 'Science Documentary'),
+       (8, 'Nature Documentary'),
+       (9, 'Kids Animation'),
+       (9, 'Adult Animation'),
+       (9, 'Comic Book Animation'),
+       (9, 'Anime');
 
 SELECT *
 FROM movie_tags;
